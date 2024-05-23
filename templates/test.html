@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="{{url_for('static',filename='assets/img/favicon.png')}}" />
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{url_for('static',filename='assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link href="{{url_for('static',filename='assets/plugins/icons/css/icons.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/plugins/animate/animate.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/plugins/bootstrap/css/bootsnav.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/css/responsive.css')}}" rel="stylesheet">
+<!-- Google Fonts -->
+<!-- Google Fonts -->
+<link href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap')}}" rel="stylesheet"> 
+<link href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap')}}" rel="stylesheet"> 
+</head>
+<body>
+
+
+    <h1 align="center" valign="middle">Liste des Sites testés</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du site</th>
+                <th>Type du site</th>
+                <th>Score</th>
+                <th>Commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for site in sites %}
+            <tr>
+                <td>{{ site[1] }}</td>
+                <td>{{ site[2] }}</td>
+                <td>{{ site[3] }}</td>
+                <td>{{ site[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+<!-- Jquery js--> 
+<script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootsnav.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/viewportchecker.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/slick.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootstrap-wysihtml5.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/aos-master/aos.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/nice-select/js/jquery.nice-select.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/custom.js')}}"></script> 
+<script> 

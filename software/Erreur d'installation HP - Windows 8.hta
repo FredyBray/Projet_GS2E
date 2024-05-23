@@ -1,0 +1,1276 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <!-- // © Copyright 2011 Hewlett-Packard Development Company, L.P. -->
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Solutions HP pour les erreurs d'installation (Windows 8 et 8.1) </title>
+<HTA:APPLICATION ID="oVTS"
+APPLICATIONNAME="bmNSWin8"
+border="thin"
+borderStyle="raised"
+caption="yes"
+contextMenu="yes"
+ICON="http://welcome.hp-ww.com/img/hpweb_1-2_topnav_hp_logo.gif"
+innerBorder="yes"
+maximizeButton="no"
+minimizeButton="yes"
+navigable="no"
+scroll="no"
+scrollFlat="no" 
+selection="yes"
+showInTaskbar="yes"
+singleInstance="yes"
+sysMenu="no"
+version="11.1"
+windowState="normal">
+<link type="text/css" href="http://ftp.hp.com/pub/softlib/IPG/CA/generic/css/3.0/troubleshoot.css" rel="stylesheet"><script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/jqueryUI1.8/js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/jqueryUI1.8/js/jquery-ui-1.8.custom.min.js"></script> <!--script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/jqueryUI1.8/external/jquery.bgiframe-2.1.1.js"></script--><script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/jqueryUI1.8/external/jquery.cookie.js"></script><script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/generic/js/3.0/translations.js"></script><script type="text/javascript" src="http://ftp.hp.com/pub/softlib/IPG/CA/generic/js/3.0/troubleshoot.js"></script><script type="text/javascript">
+try {
+	setSolutionOptions($('html').attr('lang'), $("#oVTS").attr("APPLICATIONNAME"), '13715844', "bmGenericSurvey", 8,
+			'', '', 'Unknown', '', '');
+	$(window).load(function(){
+		$("#TSLoading").remove();		
+	});
+}
+catch (e) {
+	alert('Lapplication présente un problème.\n\nVotre ordinateur doit être connecté à Internet pour utiliser ce programme de dépannage.');
+	window.close();
+
+	//If it gets here, then the window.close did not fail, but did not close the app, probably due
+	//to the "print preview" bug in IE.  Get the mshta.exe task and kill it.
+	var objWMIService = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\CIMV2");
+	var colProcessList = objWMIService.ExecQuery("Select * from Win32_Process Where Name = 'mshta.exe'");
+	var enumItems = new Enumerator(colProcessList);
+	for (; !enumItems.atEnd(); enumItems.moveNext()) {
+		var objProcess=enumItems.item();
+		objProcess.Terminate();
+	}
+}
+</script>
+</head>
+
+<body application="yes" scroll="no">
+
+<div class="windowMain" id="windowMainID">
+	<step-options prependSteps="true"/>
+	<div class="connection" id="connection-intro">
+		<div class="solution">
+			<div class="step" id="Introduction">
+				<div id="TSLoading"><p>Chargement du contenu, veuillez patienter...</p></div>
+				<h1>Solutions pour les erreurs d'installation HP sous Windows 8 et 8.1</h1>
+				<p>Nous sommes désolés qu'une erreur se soit produite lors de l'installation de notre logiciel. Malgré tous nos efforts, il arrive que cette situation se produise en raison des légères différences qui existent d'un ordinateur à l'autre.</p>
+				
+				<p>Si ces instructions ne vous sont d'aucun secours ou que vous rencontrez des problèmes additionnels, vous pouvez consulter nos forums d'assistance clientèle, où vous pourrez échanger des informations avec d'autres utilisateurs et consulter leurs messages. Nos techniciens d'assistance se tiennent également à votre disposition par messagerie instantanée et par téléphone (disponibilité variable selon votre lieu de résidence). Cliquez sur <strong>Aide complémentaire  </strong>pour en savoir plus. </p>
+				
+				<p>Pour débuter le processus de dépannage, choisissez une méthode de connexion de votre imprimante, puis cliquez sur <strong>Commencer le dépannage</strong> ci-dessous.</p>
+				
+				<div id="selectDialog" title="Sélectionnez le type de connexion de votre imprimante" style="margin-top: 20px">
+					<fieldset name="Group1" align="absmiddle" style="margin: 0px 2px 0px 2px">
+					<legend class="tasktitle" style="text-align: center">Sélectionnez le type de connexion de votre imprimante pour commencer</legend>
+					<table style="width: 95%" align="center">
+						<tr>
+							<td align="center">
+							<img src="http://ftp.hp.com/pub/softlib/IPG/CA/generic/usb_icon.png" height="70" width="150" alt="Connexion USB" onclick="$('#radioUSB').click()"></td>
+							<td align="center">
+							<img src="http://ftp.hp.com/pub/softlib/IPG/CA/generic/wireless_icon.png" width="150" height="70" alt="Connexion sans fil" onclick="$('#radioWireless').click()"></td>
+							<td align="center">
+							<img src="http://ftp.hp.com/pub/softlib/IPG/CA/generic/wired_icon.png" width="150" height="70" alt="Ethernet filaire" onclick="$('#radioWired').click()"></td>
+						</tr>
+						<tr>
+							<td align="center">
+							<input class="connectionChoice" id="radioUSB" name="Radio1" type="radio" value="USB" title="USB"> 
+							USB </td>
+							<td align="center">
+							<input class="connectionChoice" id="radioWireless" name="Radio1" type="radio" value="Sans fil">Réseau sans fil </td>
+							<td align="center">
+							<input class="connectionChoice" id="radioWired" name="Radio1" type="radio" value="Filaire"> 
+							Réseau filaire</td>
+						</tr>
+					</table>
+					</fieldset> </div>
+				<! step content>
+				<! step></div>
+			<! solution></div>
+		<! connection></div>
+	<div class="connection" id="USB">
+		<div class="solution">
+							
+			<div class="step" id="USB-1a-RunWindowsUpdate">
+				<h2>Aide relative à la configuration USB</h2>
+				<h3><a name="USBSolutionClearPCandReinstall"></a>Exécution du logiciel Windows Update et réinstallation du logiciel HP</h3>
+                
+                				<p>Il suffit souvent d'exécuter Windows Update et de tenter à nouveau d'installer le logiciel HP. Procédez comme suit. </p>
+
+                <h4>Exécution de l'outil Windows Update</h4>
+                
+				<div class="list">
+				<ol>
+					<li><p>Assurez-vous que le programme d'installation s'exécute complètement en cliquant sur <b>Continuer</b> dans les fenêtres de configuration (si aucun écran de configuration du logiciel HP ne s'affiche, cela signifie que cette étape a déjà été accomplie). </p></li>
+                    
+					<li>
+					<button class="helperButton runCommand" title="wuapp.exe startmenu">Cliquez ici pour exécuter Windows Update.</button><p>
+					<span class="toggleHelp" title="Exécuter Windows Update sur Windows&nbsp;8">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+						        <span class="expandableHelp" title="Exécuter Windows Update sur Windows&nbsp;8">
+								<div class="list">
+									<ol>
+										<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>Paramètres</b>, puis sur <b>Windows Update</b> dans la zone <b>Paramètres de recherche</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez sur <b>Windows Update</b>.</p>
+								</li>
+									</ol>
+								</div>
+								
+								</span>
+								</li>
+								
+					<li><p>Sur l'écran <b>Windows Update</b>, cliquez sur <b>Rechercher les mises à jour</b>.</p></li>
+					<li><p>Acceptez toutes les mises à jour, ou au moins toutes celles qui sont essentielles.</p>
+						</li>
+                        
+                    <li><button class="helperButton reboot">Si le système vous invite à redémarrer votre ordinateur, cliquez ici pour procéder au redémarrage maintenant.</button>
+						
+						<span class="note">
+							<p><strong>Remarque</strong><br>
+							Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+					</li>
+					
+					<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+                    
+                    
+				</ol>
+				</div>
+				
+                
+			</div>
+            
+           
+           <div class="step" id="USB-1b-ReinstallHPSoftware">
+				
+				<h3>Exécution du logiciel Windows Update et réinstallation du logiciel HP</h3>
+                
+                <p>Votre ordinateur maintenant mis à jour, tentez de réinstaller le logiciel&nbsp;HP. Procédez comme suit.</p>
+
+				<h4>Réinstallation du logiciel HP</h4>
+				
+				<div class="list">
+					<ol type="1">
+                    <li>
+						<p>Mettez votre imprimante sous tension et assurez-vous que le câble&nbsp;USB est bien débranché au niveau de l'imprimante et de l'ordinateur. </p>
+					  </li>
+					<li>
+						<p>Nous vous recommandons de télécharger et d'installer la dernière version du logiciel de votre imprimante sur le site Web HP&nbsp;:</p>
+					  <div class="list">
+					    <ol type="1">
+					      <li>
+					        <p><a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" target="_blank">Cliquez ici pour aller sur la page de téléchargement de l'assistant d'installation d'imprimante HP.  </a> </p>
+				          </li>
+					      <li>
+					        <p>Suivez les instructions pour télécharger et exécuter l'assistant d'installation d'imprimante HP.</p>
+					       
+					        </li>
+					      <li>
+					        <p>Suivez les instructions à l'écran pour télécharger le logiciel de l'imprimante correspondant à votre version de Windows.</p>
+					        
+                            <span class="note"><p><strong>Remarque</strong><br>
+                            Une installation complète du logiciel de l'imprimante pour Windows 8 ou Windows 8.1 n'est peut-être pas disponible pour tous les produits. <a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=amWin8Printers" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e05-01&h_keyword=amWin8Printers" target="_blank">Cliquez ici</a> pour savoir si un téléchargement pour Windows 8 ou Windows 8.1 est disponible pour votre imprimante.</p>
+                            </span>
+					        
+					        </li>
+				        </ol>
+					    </div>
+					  </li>
+						
+						<li><p>L'assistant d'installation d'imprimante HP télécharge et démarre l'installation du logiciel. Suivez les instructions à l'écran en vous assurant d'effectuer toutes les étapes de l'installation sans annuler ou quitter aucun écran.</p>
+					<span class="note">
+							<p><strong>Remarque</strong><br>
+						Ne branchez pas le câble USB avant d'y avoir été invité(e), ou une erreur d'installation risque de se produire. De même, si votre logiciel ne détecte toujours pas votre imprimante via la connexion&nbsp;USB, suivez les conseils USB ci-dessous.</p>
+						
+						</span>
+						
+						<span class="toggleHelp" title="Conseils USB">Conseils USB</span>
+    				    <span class="expandableHelp" title="Conseils USB">
+
+						<div class="list">
+							<ul>
+								<li>
+								<p>La longueur du câble USB ne doit pas dépasser 5&nbsp;mètres. (Pour des résultats optimaux, utilisez un câble USB d'une longueur maximale de 2&nbsp;mètres.)</p>
+								</li>
+								<li>
+								<p>Essayez de brancher le câble USB à un autre connecteur USB de votre ordinateur. (Par exemple, si vous avez branché le câble à un port USB avant, essayez de le brancher à un port arrière.)
+								</p>
+								</li>
+								<li>
+								<p>Si le câble USB est relié à un concentrateur USB ou à une station d'accueil d'ordinateur portable, il se peut que l'installation échoue. Même si vous pensez que votre concentrateur USB fonctionne correctement, essayez de brancher directement le câble USB à l'ordinateur pendant l'installation du périphérique (lorsque le système vous y invite). Vous pourrez toujours le rebrancher au concentrateur USB ultérieurement. </p>
+								</li>
+								<li>
+								<p>Si vous devez utiliser un concentrateur&nbsp;USB, utilisez-en un qui soit alimenté en externe au lieu de recourir à un concentrateur sans alimentation.</p>
+								</li>
+							</ul>
+						</div>
+						
+						</span>
+					</li>
+					<li>Lorsque l'installation est terminée, essayez d'utiliser votre imprimante.</li>
+					</ol>
+    </div>
+				<p>Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+						<p>Si l'installation est toujours un échec, il vous faudra peut-être désactiver temporairement des logiciels au démarrage. Cliquez sur <strong>Solution suivante</strong> ci-dessous pour poursuivre. </p>
+				 
+			</div>
+		
+           
+		</div>
+			
+		<div class="solution">
+			
+			
+			<div class="step" id="USB-2a-DisableStartupSoftware">
+            
+            	<h3>Désactivez le logiciel de démarrage et réinstallez le logiciel HP</h3>
+                 
+				<h4>Désactivation du logiciel de démarrage</h4>
+				
+				<p>Si vous n'êtes pas parvenu à installer avec succès votre périphérique HP, il se peut que vous deviez désactiver temporairement le logiciel de démarrage. Windows autorise de nombreux programmes et processus à s'exécuter immédiatement au démarrage. Dans certains cas, il arrive que ces programmes vous empêchent d'installer le logiciel HP. Cette étape vous explique comment désactiver temporairement ces programmes et processus pour pouvoir installer le logiciel de l'imprimante. </p>
+				
+				<div class="list">
+					<ol type="1">
+						<li>
+						<p><button class="helperButton runCommand" title="msconfig">Cliquez ici pour ouvrir la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong>.</button> (L'ouverture de l'utilitaire peut prendre une minute.)</p>
+						<span class="toggleHelp" title="Exécuter msconfig">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+				        <span class="expandableHelp" title="Exécuter msconfig">
+						
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Saisissez <b>msconfig</b> dans la zone <b>Rechercher des applications</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>msconfig</b>.</p>
+								</li>
+							</ol>
+						</div>
+						
+						
+						
+						</span>
+						</li>
+						<li>
+						<p>Vérifiez si l'option <strong>Démarrage normal</strong> ou <strong>Démarrage sélectif</strong> est actuellement sélectionnée. Si
+						l'option <strong>Démarrage normal</strong> est sélectionnée, suivez les étapes correspondantes à gauche. Si l'option <strong>Démarrage sélectif</strong> 
+						est sélectionnée, suivez les étapes spécifiées dans la colonne <b>Démarrage sélectif</b>. </p>
+						
+						
+						<table>
+						<tr>
+						<th><p>Pour désactiver un démarrage normal</p></th>
+						<th><p>Pour désactiver un démarrage sélectif</p></th></tr>
+						
+						<tr>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Sélectionnez <strong>Démarrage sélectif</strong>, puis supprimez la coche de la case <strong>Charger les éléments de démarrage</strong>.
+								</p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Cliquez sur <strong>Désactiver tout</strong>. </p>
+								</li>
+							</ol>
+						</div>
+						</td>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez sur l'onglet <strong>Démarrage</strong>, puis sur <b>Ouvrir le Gestionnaire des tâches</b>, et notez la liste des éléments sélectionnés. </p>
+								<p>Cette liste vous sera utile ultérieurement pour réinitialiser les éléments de démarrage de votre ordinateur. </p>
+                                
+                                
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Général</strong>, puis supprimez la coche de la case <strong>Charger les éléments de démarrage</strong>.
+								</p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Notez la liste des éléments qui sont sélectionnés. </p>
+								<p>Cette liste vous sera utile ultérieurement pour réinitialiser les éléments de démarrage de votre ordinateur. </p>
+								</li>
+								<li>
+								<p>Cliquez sur <strong>Désactiver tout</strong>. </p>
+								</li>
+							</ol>
+						</div>
+						</td></tr>
+						</table>
+						
+						</li>
+						<li>
+						<p>Cliquez sur <strong>Appliquer</strong>, puis sur <strong>OK</strong>. </p>
+						<p>Une nouvelle fenêtre s'affiche. Cliquez sur <strong>Redémarrer</strong> pour continuer. </p>
+						
+						 	<span class="note">
+							<p><strong>Remarque</strong><br>
+							Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+							
+							</span>
+						
+						</li>
+						<li>
+						<p>Une fois votre ordinateur redémarré, la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong> apparaît. Cochez la case en regard de l'option <strong>Ne plus afficher ce message</strong>, puis cliquez sur <strong>OK</strong>. </p>
+						</li>
+						<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+					</ol>
+					</div>
+				<! step>
+				<! content></div>
+				
+			<div class="step" id="USB-2b-ReinstallHPSoftware">
+				<step-options showSurvey="true"/>
+				<h4>Réinstallation du logiciel HP</h4>
+				<p>Les logiciels au démarrage étant maintenant désactivés, tentez de réinstaller le logiciel&nbsp;HP.</p>
+				
+				<div class="list">
+					<ol type="1">
+					<li><p>Débranchez le câble USB de l'imprimante et de l'ordinateur.</p>
+					</li>
+					<li><p>Installez le logiciel HP en exécutant le programme d'installation que vous avez téléchargé.</p>
+      				</li>
+					<li><p>Suivez les instructions à l'écran en vous assurant d'effectuer toutes les étapes de l'installation sans annuler ou quitter aucun écran.</p>
+						<span class="note">
+							<p><strong>Remarque</strong><br>
+						Ne branchez pas le câble USB avant d'y avoir été invité(e), ou une erreur d'installation risque de se produire. De même, si votre logiciel ne détecte toujours pas votre imprimante via la connexion&nbsp;USB, suivez les conseils USB ci-dessous.</p>
+						
+						</span>
+						
+						<span class="toggleHelp" title="Conseils USB">Conseils USB</span>
+    				    <span class="expandableHelp" title="Conseils USB">
+
+						<div class="list">
+							<ul>
+								<li>
+								<p>La longueur du câble USB ne doit pas dépasser 5&nbsp;mètres. (Pour des résultats optimaux, utilisez un câble USB d'une longueur maximale de 2&nbsp;mètres.)</p>
+								</li>
+								<li>
+								<p>Essayez de brancher le câble USB à un autre connecteur USB de votre ordinateur. (Par exemple, si vous avez branché le câble à un port USB avant, essayez de le brancher à un port arrière.)
+								</p>
+								</li>
+								<li>
+								<p>Si le câble USB est relié à un concentrateur USB ou à une station d'accueil d'ordinateur portable, il se peut que l'installation échoue. Même si vous pensez que votre concentrateur USB fonctionne correctement, essayez de brancher directement le câble USB à l'ordinateur pendant l'installation du périphérique (lorsque le système vous y invite). Vous pourrez toujours le rebrancher au concentrateur USB ultérieurement. </p>
+								</li>
+								<li>
+								<p>Si vous devez utiliser un concentrateur&nbsp;USB, utilisez-en un qui soit alimenté en externe au lieu de recourir à un concentrateur sans alimentation.</p>
+								</li>
+							</ul>
+						</div>
+						
+						</span>
+					</li>
+					<li><p>Lorsque l'installation est terminée, essayez d'utiliser votre imprimante.</p></li>
+					<li><p>Que le logiciel ait été correctement installé ou non, <em>suivez les instructions de l'étape suivante pour activer les logiciels au démarrage</em>, sinon votre ordinateur risque de ne pas fonctionner conformément à vos attentes. <a class="gotoStep" href="USB-2c-EnableStartupSoftware">Cliquez ici</a> ou cliquez sur <strong>Étape suivante</strong> ci-dessous pour poursuivre.
+						</p>
+						</li>
+					</ol>
+				</div>
+				<! content>
+				<! step></div>
+			<div class="step" id="USB-2c-EnableStartupSoftware">
+				<h4>Activation du logiciel de démarrage</h4>
+				<p>Si vous avez précédemment désactivé des logiciels au démarrage comme conseillé, suivez ces étapes pour réactiver ces logiciels, sinon votre ordinateur risque de ne pas fonctionner conformément à vos attentes.</p>
+				<div class="list">
+					<ol type="1">
+						<li>
+						<p><button class="helperButton runCommand" title="msconfig">Cliquez ici pour ouvrir la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong>.</button></p>
+						<span class="toggleHelp" title="Exécuter msconfig">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+				        <span class="expandableHelp" title="Exécuter msconfig">
+						
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Saisissez <b>msconfig</b> dans la zone <b>Rechercher des applications</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>msconfig</b>.</p>
+								</li>
+							</ol>
+						</div>
+						
+						
+						
+						
+						
+						</span>
+						</li>
+						<li>
+						<p>Si vous avez désactivé le <strong>Démarrage normal</strong>, suivez les étapes correspondantes à gauche. Si vous avez désactivé le
+						<strong>Démarrage sélectif</strong>, suivez les étapes correspondantes à droite. </p>
+						
+						<table>
+						<tr><th>
+						<p>Pour activer un démarrage normal</p>
+						</th>
+						<th>
+						<p>Pour activer un démarrage sélectif</p>
+						</th>
+						</tr>
+						<tr>
+						<td width="30%">
+						<div class="list">
+							<ul type="1">
+								<li>
+								<p>Sélectionnez <strong>Démarrage normal</strong>. </p>
+								</li>
+							</ul>
+						</div>
+						</td>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez sur l'onglet <strong>Démarrage</strong>, puis sur <b>Ouvrir le Gestionnaire des tâches</b>, et sélectionnez chaque élément de la liste dressée lors d'une étape précédente. </p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Dans l'onglet <strong>Services</strong>, sélectionnez chaque élément de la liste dressée lors d'une étape précédente.</p>
+								</li>
+							</ol>
+						</div>
+						</td>
+						</tr>
+						</table>
+						</li>
+						<li>
+						<p>Cliquez sur <strong>Appliquer</strong>, puis sur <strong>OK</strong>. </p>
+						</li>
+						<li>
+						<p>Une nouvelle fenêtre vous invite à redémarrer.</p>
+						
+						<span class="note">
+						<p><strong>Remarque</strong><br>
+						Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+						</li>
+						<li>
+						 <p>Cliquez sur <b>Quitter</b> pour fermer ce programme de dépannage. Lorsque vous y êtes invité(e), faites-nous savoir si ce document vous a permis de résoudre votre problème. Vos commentaires sont très utiles à HP et aux autres utilisateurs, car ils nous servent à déterminer l'opportunité d'apporter des modifications à ce document d'aide. Que ces instructions vous aient été utiles ou non, vos commentaires restent toujours les bienvenus.</p>
+						</li>
+					</ol>
+				</div>
+						<p>Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+						<p>En cas d'échec de l'installation, <a href="#HPSupport">cliquez ici pour obtenir plus d'aide</a>.</p>
+				<! content>
+				<! step></div>
+			<! solution></div>
+		<! connection></div>
+        
+        
+	<div class="connection" id="Sans fil">
+		<div class="solution">
+        
+        <div class="step" id="Wireless-1a-RunWindowsUpdate">
+				<h2>Aide relative à la configuration sans fil</h2>
+				<h3>Exécution du logiciel Windows Update, redémarrage des périphériques réseau et réinstallation du logiciel HP</h3>
+                
+                <p>Il suffit souvent d'exécuter Windows Update, de redémarrer tous les périphériques et de tenter à nouveau d'installer le logiciel HP. Procédez comme suit. </p>
+
+                <h4>Exécution de l'outil Windows Update</h4>
+                
+				<div class="list">
+				<ol>
+					<li><p>Assurez-vous que le programme d'installation s'exécute complètement en cliquant sur <b>Continuer</b> dans les fenêtres de configuration (si aucun écran de configuration du logiciel HP ne s'affiche, cela signifie que cette étape a déjà été accomplie). </p></li>
+                    
+					<li>
+					<button class="helperButton runCommand" title="wuapp.exe startmenu">Cliquez ici pour exécuter Windows Update.</button><p>
+					<span class="toggleHelp" title="Win8 Update">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+					<span class="expandableHelp" title="Win8 Update">
+					<div class="list">
+									<ol type="1">
+										<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>Paramètres</b>, puis sur <b>Windows Update</b> dans la zone <b>Paramètres de recherche</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez sur <b>Windows Update</b>.</p>
+								</li>
+									</ol>
+								</div>
+								
+								</span>
+								</li>
+								<li>
+								<p>Sur l'écran <strong>Windows Update</strong>, cliquez ou appuyez sur <strong>Rechercher les mises à jour</strong>. </p>
+								</li>
+								<li>
+								<p>Acceptez toutes les mises à jour, ou au moins toutes celles qui sont essentielles. </p>
+                                <span class="note">
+							<p><strong>Remarque</strong><br>
+							Le système peut vous inviter à redémarrer l'ordinateur. Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+								</li>
+										
+					<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+                    
+                    
+				</ol>
+				</div>
+				
+                
+			</div>
+        
+        
+			<div class="step" id="Wireless-1b-RestartNetworkDevices">
+				<h3>Exécution du logiciel Windows Update, redémarrage des périphériques réseau et réinstallation du logiciel HP</h3>
+			<p>Votre ordinateur étant maintenant à jour, redémarrez votre routeur, votre imprimante et votre ordinateur. Procédez comme suit.</p>
+			<h4>Redémarrage de tous les périphériques réseau</h4>
+            
+			<div class="list">
+					<ol type="1">
+                    
+                    <li><p>Redémarrez votre routeur et votre imprimante&nbsp;:</p>
+                    	
+                        <div class="list">
+                        <ol>
+                        <li><p>Mettez l'imprimante hors tension.</p></li>
+                                               
+                    	<li><p>Retirez les câbles d'alimentation de l'imprimante et du routeur ou de la combinaison modem/routeur. </p>
+						<span class="note"><p><strong>Remarque</strong><br>
+						De même, si votre ordinateur utilise un adaptateur WiFi USB, débranchez-le, puis rebranchez-le.</p>
+						
+						</span>
+						</li>
+                        <li>
+						<p>Patientez 30&nbsp;secondes. </p>
+						</li>
+                        <li>
+						<p>Branchez de nouveau les câbles d'alimentation à l'imprimante et au routeur. </p>
+						</li>
+						<li>
+						<p>Mettez l'imprimante sous tension. </p>
+						</li>
+						<li>
+						<p>Vérifiez que le routeur et l'imprimante sont tous deux sous tension et prêts. </p>
+						<span class="note"><p><strong>Remarque</strong><br>
+						Cet état est généralement confirmé par des voyants allumés.</p>
+						
+						</span>
+						</li>
+                    	</ol>
+                        </div>
+                    </li>
+					
+					<li><button class="helperButton reboot">Cliquez ici pour redémarrer votre ordinateur.</button><p>
+					<span class="note"><p><strong>Remarque</strong><br>
+						Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+					</li>
+                    
+                    <li><p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p></li>
+					
+					</ol>
+				</div>
+				
+				<! step></div>
+                
+				<div class="step" id="Wireless-1c-ReinstallHPSoftware">
+				<h3>Exécution du logiciel Windows Update, redémarrage des périphériques réseau et réinstallation du logiciel HP</h3>                
+                <p>Votre ordinateur étant maintenant à jour et tous les périphériques étant redémarrés, essayez de réinstaller le logiciel&nbsp;HP. Procédez comme suit.</p>
+
+				<h4>Réinstallation du logiciel HP</h4>
+                
+                <div class="list">
+					<ol type="1">
+                    <li>
+						<p>Mettez votre imprimante sous tension et assurez-vous que le câble&nbsp;USB est bien débranché au niveau de l'imprimante et de l'ordinateur. </p>
+					  </li>
+					<li>
+						<p>Nous vous recommandons de télécharger et d'installer la dernière version du logiciel de votre imprimante sur le site Web HP&nbsp;:</p>
+					  <div class="list">
+					    <ol type="1">
+					      <li>
+					        <p><a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" target="_blank">Cliquez ici pour aller sur la page de téléchargement de l'assistant d'installation d'imprimante HP.  </a> </p>
+					        </li>
+					      <li>
+					        <p>Suivez les instructions pour télécharger et exécuter l'assistant d'installation d'imprimante HP.</p>
+					       
+					        </li>
+					      <li>
+					        <p>Suivez les instructions à l'écran pour télécharger le logiciel de l'imprimante correspondant à votre version de Windows.</p>
+					        
+                            <span class="note"><p><strong>Remarque</strong><br>
+                            Une installation complète du logiciel de l'imprimante pour Windows 8 ou Windows 8.1 n'est peut-être pas disponible pour tous les produits. <a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=amWin8Printers" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e05-01&h_keyword=amWin8Printers" target="_blank">Cliquez ici</a> pour savoir si un téléchargement pour Windows 8 ou Windows 8.1 est disponible pour votre imprimante.</p>
+                            </span>
+					        
+					        </li>
+				        </ol>
+					    </div>
+					  </li>
+						
+						<li><p>L'assistant d'installation d'imprimante HP télécharge et démarre l'installation du logiciel. Suivez les instructions à l'écran en vous assurant d'effectuer toutes les étapes de l'installation sans annuler ou quitter aucun écran.</p>
+					<span class="note">
+							<p><strong>Remarque</strong><br>
+						Ne branchez pas le câble USB avant d'y avoir été invité(e), ou une erreur d'installation risque de se produire. De même, si votre logiciel ne détecte toujours pas votre imprimante via la connexion&nbsp;USB, suivez les conseils USB ci-dessous.</p>
+						
+						</span>
+						
+						<span class="toggleHelp" title="Conseils USB">Conseils USB</span>
+    				    <span class="expandableHelp" title="Conseils USB">
+
+						<div class="list">
+							<ul>
+								<li>
+								<p>La longueur du câble USB ne doit pas dépasser 5&nbsp;mètres. (Pour des résultats optimaux, utilisez un câble USB d'une longueur maximale de 2&nbsp;mètres.)</p>
+								</li>
+								<li>
+								<p>Essayez de brancher le câble USB à un autre connecteur USB de votre ordinateur. (Par exemple, si vous avez branché le câble à un port USB avant, essayez de le brancher à un port arrière.)
+								</p>
+								</li>
+								<li>
+								<p>Si le câble USB est relié à un concentrateur USB ou à une station d'accueil d'ordinateur portable, il se peut que l'installation échoue. Même si vous pensez que votre concentrateur USB fonctionne correctement, essayez de brancher directement le câble USB à l'ordinateur pendant l'installation du périphérique (lorsque le système vous y invite). Vous pourrez toujours le rebrancher au concentrateur USB ultérieurement. </p>
+								</li>
+								<li>
+								<p>Si vous devez utiliser un concentrateur&nbsp;USB, utilisez-en un qui soit alimenté en externe au lieu de recourir à un concentrateur sans alimentation.</p>
+								</li>
+							</ul>
+						</div>
+						
+						</span>
+					</li>
+					<li>Lorsque l'installation est terminée, essayez d'utiliser votre imprimante.</li>
+					</ol>
+    </div>
+				
+				
+				<p>Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+						<p>En cas de nouvel échec de l'installation, cliquez sur <strong>Solution suivante</strong> ci-dessous pour continuer. </p>
+             </div>
+                
+		<! solution></div>
+			
+		<div class="solution">
+			<div class="step" id="Wireless-2a-VisitWPConWeb">
+				<h3>Consultation du <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span> sur Internet</h3>
+				<p>Nous vous recommandons de consulter sur Internet le <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span> pour obtenir de l'aide supplémentaire&nbsp;:</p>
+				<p>
+				<a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=bmGoWireless" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=bmGoWireless" target="_blank" style="font-weight: bold; color: #00F;">
+				www.hp.com/go/wirelessprinting</a></p>
+				<p>Le <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span> fournit des informations pour configurer correctement un système d'impression sans fil et résoudre les problèmes d'impression sans fil&nbsp;: Vous pouvez rechercher les informations suivantes&nbsp;:</p>
+					
+					<div class="list">
+					<ul>
+					                    
+					<li><p>Pour diagnostiquer automatiquement certains problèmes de réseau, cliquez sur le lien <b><span class="varTitle" id="vtNDU">Utilitaire de diagnostic réseau</span></b> situé sur la gauche de la page Web pour télécharger l'<span class="varTitle" id="vtNDU">Utilitaire de diagnostic réseau</span>. Cet utilitaire vous aide à trouver le nom de votre réseau (SSID) et la clé de sécurité (clé WEP ou phrase de sécurité WPA), d'afficher tous les réseaux disponibles et de déterminer si votre imprimante est bien présente sur le réseau.</p></li>
+					
+					<li><p>Afin d'obtenir de l'aide pour intégrer votre imprimante au réseau sans fil, consultez les liens de <b>Dépannage</b>.</p></li>
+                      
+                    <li><p>Pour découvrir comment configurer votre pare-feu de manière à ce qu'il autorise l'installation du logiciel de l'imprimante, consultez le lien d'<b>Aide relative au pare-feu</b>.</p></li> 
+                    
+                     					
+					<li><p>Pour en apprendre davantage sur les réseaux sans fil et l'impression sans fil, consultez le lien <b>Principes de base du sans fil</b>.</p></li>
+					
+					</ul>
+					</div>
+					
+				<p>Après avoir consulté le <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span>, revenez à cette utilitaire de résolution des problèmes. Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+				<p>En cas d'échec de l'installation, <a href="#HPSupport">cliquez ici pour obtenir plus d'aide</a>.</p>
+				<! content>
+				<! step></div>
+			<! solution></div>
+		<! connection></div>
+        
+	<div class="connection" id="Filaire">
+		<div class="solution">
+        
+        	<div class="step" id="Wired-1a-RunWindowsUpdate">
+				<h2>Aide relative à la configuration du réseau câble (Ethernet)</h2>
+				<h3>Exécution de Windows Update, redémarrage de tous les périphériques réseau, ajout de l'imprimante sur le réseau et réinstallation du logiciel HP </h3>
+                
+				<p>Cette solution se compose de plusieurs étapes. Assurez-vous d'avoir exécuté chaque étape avant de passer à la suivante.</p>
+
+                <h4>Exécution de l'outil Windows Update</h4>
+                
+				<div class="list">
+				<ol>
+					<li><p>Assurez-vous que le programme d'installation s'exécute complètement en cliquant sur <b>Continuer</b> dans les fenêtres de configuration (si aucun écran de configuration du logiciel HP ne s'affiche, cela signifie que cette étape a déjà été accomplie). </p></li>
+                    
+					<li>
+					<button class="helperButton runCommand" title="wuapp.exe startmenu">Cliquez ici pour exécuter Windows Update.</button><p>
+					<span class="toggleHelp" title="Win7 Update">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+					<span class="expandableHelp" title="Win7 Update">
+					<div class="list">
+					<ol>
+						<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>Paramètres</b>, puis sur <b>Windows Update</b> dans la zone <b>Paramètres de recherche</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez sur <b>Windows Update</b>.</p>
+								</li>
+					</ol>
+					</div>
+					
+					</span>
+					</li>
+					<li><p>Sur l'écran <b>Windows Update</b>, cliquez sur <b>Rechercher les mises à jour</b>.</p></li>
+					<li><p>Acceptez toutes les mises à jour, ou au moins toutes celles qui sont essentielles.</p>
+						
+						<span class="note">
+							<p><strong>Remarque</strong><br>
+							Le système peut vous inviter à redémarrer l'ordinateur. Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+					</li>
+					
+					<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+                    
+                    
+				</ol>
+				</div>
+				
+			</div>
+        
+			<div class="step" id="Wired-1b-RestartNetworkDevices">
+
+				<h4>Redémarrage de tous les périphériques réseau</h4>
+				<p>Il suffit souvent de redémarrer tous les périphériques réseau, puis de recommencer la procédure d'installation depuis le début. Procédez comme suit.</p>
+
+				<div class="list">
+					<ol type="1">
+                    
+                    <li><p>Redémarrez votre routeur et votre imprimante&nbsp;:</p>
+                    	
+                        <div class="list">
+                        <ol>
+                        <li><p>Mettez l'imprimante hors tension.</p></li>
+                                               
+                    	<li><p>Retirez les câbles d'alimentation de l'imprimante et du routeur ou de la combinaison modem/routeur. </p>
+						<span class="note"><p><strong>Remarque</strong><br>
+						De même, si votre ordinateur utilise un adaptateur WiFi USB, débranchez-le, puis rebranchez-le.</p>
+						
+						</span>
+						</li>
+                        <li>
+						<p>Patientez 30&nbsp;secondes. </p>
+						</li>
+                        <li>
+						<p>Branchez de nouveau les câbles d'alimentation à l'imprimante et au routeur. </p>
+						</li>
+						<li>
+						<p>Mettez l'imprimante sous tension. </p>
+						</li>
+						<li>
+						<p>Vérifiez que le routeur et l'imprimante sont tous deux sous tension et prêts. </p>
+						<span class="note"><p><strong>Remarque</strong><br>
+						Cet état est généralement confirmé par des voyants allumés.</p>
+						
+						</span>
+						</li>
+                    	</ol>
+                        </div>
+                    </li>
+					
+					<li><button class="helperButton reboot">Cliquez ici pour redémarrer votre ordinateur.</button><p>
+					<span class="note"><p><strong>Remarque</strong><br>
+						Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+					</li>
+                    
+                    <li><p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p></li>
+					
+					</ol>
+				</div>
+				
+				
+				<! content>
+				<! step></div>
+				
+			<div class="step" id="Wired-1c-VerifyPrinterIsOnNetwork">
+				<step-options showSurvey="true"/>
+				<h4>Vérification de la présence de l'imprimante sur le réseau</h4>
+				
+				<p>Il convient à présent de vérifier la présence de l'imprimante sur le réseau. Procédez comme suit.</p>
+				
+				<div class="list">
+				<ol>
+					<li><p>Branchez le câble Ethernet sur l'imprimante et assurez-vous que l'autre extrémité est branchée à un port réseau actif. </p></li>
+					<li><p>Si votre imprimante est équipée d'un écran, procédez comme suit&nbsp;:</p>
+					<ol>
+						<li><p>Sur le panneau de commande de l'imprimante, appuyez sur le bouton <b>Configuration</b>.</p></li>
+						<li><p>Appuyez sur la <b>flèche vers le bas</b> pour sélectionner l'option <b>Réseau</b>, puis appuyez sur <b>OK</b>.</p> </li>
+						<li><p>Appuyez sur la <b>flèche vers le bas</b> pour sélectionner l'option <b>Test du réseau</b> ou <b>Page de configuration réseau</b>, puis appuyez sur <b>OK</b>.</p></li>
+						<li><p>Suivez les procédures de dépannage éventuelles si des problèmes critiques sont identifiés dans le rapport de test du réseau.</p></li>
+					</ol>
+					</li>
+					<li><p>Si le rapport de test du réseau indique une adresse IP valide correspondant à l'imprimante, cela signifie que l'imprimante est bien identifiée sur le réseau. Cliquez <a class="gotoStep" href="Wired-1d-CheckCommunicationBtwPrinterComputer">ici</a> ou sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p></li>
+					<li><p>Si le rapport de test du réseau n'affiche pas d'adresse IP valide pour l'imprimante (par exemple, <b>0.0.0.0</b> 
+					ou <b>169.254.xxx.xxx</b>), cela signifie que le produit <b>n'est pas</b> sur le réseau. Procédez comme suit&nbsp;:</p>
+					<ol>
+						<li><p>Assurez-vous que le câble Ethernet est relié à un port actif.</p></li>
+						<li><p>Essayez d'utiliser un câble Ethernet différent.</p></li>
+						<li><p>Imprimez à nouveau un rapport de test du réseau et observez les résultats obtenus.</p></li>
+						<li><p>Si le rapport de test du réseau indique une adresse IP valide, cliquez <a class="gotoStep" href="Wired-1d-CheckCommunicationBtwPrinterComputer">ici</a> ou sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution. Dans le cas contraire, <a href="#HPSupport">cliquez ici pour obtenir plus d'aide.</a></p></li>
+					</ol>
+					</li>
+				</ol>
+				</div>
+			</div>
+            
+			<div class="step" id="Wired-1d-CheckCommunicationBtwPrinterComputer">
+				<step-options showSurvey="true"/>
+				<h4>Vérifiez la communication entre l'imprimante et l'ordinateur.</h4>
+				<p>Assurons-nous que votre ordinateur et l'imprimante sont sur le même réseau et qu'ils peuvent communiquer.</p>
+				<div class="list">
+				<ol>
+					<li><p>Dans un navigateur Web (tel qu'Internet Explorer), ouvrez une page Web afin de vérifier que vous pouvez accéder au réseau.</p></li>
+					<li><p>Recherchez l'adresse IP de l'imprimante dans le rapport de test du réseau imprimé à l'étape précédente.</p></li>
+					<li><p>Dans un navigateur Web, entrez l'adresse IP de l'imprimante dans la barre d'adresse, puis appuyez sur <b>Entrée</b>.</p>
+					<p>Par exemple, entrez <b>http://192.168.0.1</b>. La page d'accueil interne de l'imprimante devrait s'afficher.</p></li>
+					<li><p>Pouvez-vous accéder à la page d'accueil interne de l'imprimante&nbsp;?</p>
+						<div class="list">
+						<ul>
+						<li><p><b>Oui, la page d'accueil interne de l'imprimante s'affiche.</b> Cliquez <a class="gotoStep" href="Wired-1e-ReinstallHPSoftware">ici</a> ou sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p></li>
+						<li><p><b>Non, la page d'accueil interne de l'imprimante ne s'affiche pas.</b> Vérifiez que l'imprimante et l'ordinateur se trouve sur le même réseau Si ces deux composants sont reliés au même réseau mais ne communiquent pas entre eux, <a href="#HPSupport">cliquez ici pour obtenir une assistance supplémentaire.</a></p></li>
+					</ul>
+					</div>
+					</li>
+				</ol>
+				</div>
+			</div>
+			
+			<div class="step" id="Wired-1e-ReinstallHPSoftware">
+				<h4>Réinstallation du logiciel HP</h4>
+				<p>Essayez à nouveau d'installer le logiciel HP.</p>
+				
+                <div class="list">
+					<ol type="1">
+                    <li>
+						<p>Mettez votre imprimante sous tension et assurez-vous que le câble&nbsp;USB est bien débranché au niveau de l'imprimante et de l'ordinateur. </p>
+					  </li>
+					<li>
+						<p>Nous vous recommandons de télécharger et d'installer la dernière version du logiciel de votre imprimante sur le site Web HP&nbsp;:</p>
+					  <div class="list">
+					    <ol type="1">
+					      <li>
+					        <p><a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-926&h_lang=fr&h_client=s-h-e005-01&h_keyword=dg-PIW&jumpid=re_r3990_eSupport/BlackMagic" target="_blank">Cliquez ici pour aller sur la page de téléchargement de l'assistant d'installation d'imprimante HP.  </a> </p>
+					        </li>
+					      <li>
+					        <p>Suivez les instructions pour télécharger et exécuter l'assistant d'installation d'imprimante HP.</p>
+					       
+					        </li>
+					      <li>
+					        <p>Suivez les instructions à l'écran pour télécharger le logiciel de l'imprimante correspondant à votre version de Windows.</p>
+					        
+                            <span class="note"><p><strong>Remarque</strong><br>
+                            Une installation complète du logiciel de l'imprimante pour Windows 8 ou Windows 8.1 n'est peut-être pas disponible pour tous les produits. <a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=amWin8Printers" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e05-01&h_keyword=amWin8Printers" target="_blank">Cliquez ici</a> pour savoir si un téléchargement pour Windows 8 ou Windows 8.1 est disponible pour votre imprimante.</p>
+                            </span>
+					        
+					        </li>
+				        </ol>
+					    </div>
+					  </li>
+						
+						<li><p>L'assistant d'installation d'imprimante HP télécharge et démarre l'installation du logiciel. Suivez les instructions à l'écran en vous assurant d'effectuer toutes les étapes de l'installation sans annuler ou quitter aucun écran.</p>
+					<span class="note">
+							<p><strong>Remarque</strong><br>
+						Ne branchez pas le câble USB avant d'y avoir été invité(e), ou une erreur d'installation risque de se produire. De même, si votre logiciel ne détecte toujours pas votre imprimante via la connexion&nbsp;USB, suivez les conseils USB ci-dessous.</p>
+						
+						</span>
+						
+						<span class="toggleHelp" title="Conseils USB">Conseils USB</span>
+    				    <span class="expandableHelp" title="Conseils USB">
+
+						<div class="list">
+							<ul>
+								<li>
+								<p>La longueur du câble USB ne doit pas dépasser 5&nbsp;mètres. (Pour des résultats optimaux, utilisez un câble USB d'une longueur maximale de 2&nbsp;mètres.)</p>
+								</li>
+								<li>
+								<p>Essayez de brancher le câble USB à un autre connecteur USB de votre ordinateur. (Par exemple, si vous avez branché le câble à un port USB avant, essayez de le brancher à un port arrière.)
+								</p>
+								</li>
+								<li>
+								<p>Si le câble USB est relié à un concentrateur USB ou à une station d'accueil d'ordinateur portable, il se peut que l'installation échoue. Même si vous pensez que votre concentrateur USB fonctionne correctement, essayez de brancher directement le câble USB à l'ordinateur pendant l'installation du périphérique (lorsque le système vous y invite). Vous pourrez toujours le rebrancher au concentrateur USB ultérieurement. </p>
+								</li>
+								<li>
+								<p>Si vous devez utiliser un concentrateur&nbsp;USB, utilisez-en un qui soit alimenté en externe au lieu de recourir à un concentrateur sans alimentation.</p>
+								</li>
+							</ul>
+						</div>
+						
+						</span>
+					</li>
+					<li>Lorsque l'installation est terminée, essayez d'utiliser votre imprimante.</li>
+					</ol>
+    </div>
+				
+				<p>Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+				<p>En cas de nouvel échec de l'installation, cliquez sur <strong>Solution suivante</strong> ci-dessous pour continuer. </p>
+             </div>
+		</div>
+		
+		<div class="solution">
+		
+			<div class="step" id="Wired-2a-DisableStartupSoftware">
+				<step-options showSurvey="true"/>
+                <h3>Désactivez les services de démarrage et le pare-feu, puis réinstallez le logiciel HP</h3>
+
+   				<p>Cette solution se compose de plusieurs étapes. Assurez-vous d'avoir exécuté chaque étape avant de passer à la suivante.</p>
+				
+				<h4>Désactivation du logiciel de démarrage </h4>
+                
+				<p>Si vous n'êtes pas parvenu à installer avec succès votre périphérique HP, il se peut que vous deviez désactiver temporairement le logiciel de démarrage. Windows autorise de nombreux programmes et processus à s'exécuter immédiatement au démarrage. Dans certains cas, il arrive que ces programmes vous empêchent d'installer le logiciel HP. Cette étape vous explique comment désactiver temporairement ces programmes et processus pour pouvoir installer le logiciel de l'imprimante. </p>
+
+				<div class="list">
+					<ol type="1">
+						<li>
+						<p><button class="helperButton runCommand" title="msconfig">Cliquez ici pour ouvrir la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong>.</button> (L'ouverture de l'utilitaire peut prendre une minute.)</p>
+						<span class="toggleHelp" title="Exécuter msconfig">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+				        <span class="expandableHelp" title="Exécuter msconfig">
+						
+						
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Saisissez <b>msconfig</b> dans la zone <b>Rechercher des applications</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>msconfig</b>.</p>
+								</li>
+							</ol>
+						</div>
+						
+						
+						
+						</span>
+						</li>
+						<li>
+						<p>Vérifiez si l'option <strong>Démarrage normal</strong> ou <strong>Démarrage sélectif</strong> est actuellement sélectionnée. Si
+						l'option <strong>Démarrage normal</strong> est sélectionnée, suivez les étapes correspondantes à gauche. Si l'option <strong>Démarrage sélectif</strong> 
+						est sélectionnée, suivez les étapes spécifiées dans la colonne <b>Démarrage sélectif</b>. </p>
+											
+						<table>
+						<tr>
+						<th><p>Pour désactiver un démarrage normal</p></th>
+						<th><p>Pour désactiver un démarrage sélectif</p></th></tr>
+						
+						<tr>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Sélectionnez <strong>Démarrage sélectif</strong>, puis supprimez la coche de la case <strong>Charger les éléments de démarrage</strong>.
+								</p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Cliquez sur <strong>Désactiver tout</strong>. </p>
+								</li>
+							</ol>
+						</div>
+						</td>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez sur l'onglet <strong>Démarrage</strong>, puis sur <b>Ouvrir le Gestionnaire des tâches</b>, et notez la liste des éléments sélectionnés. </p>
+								<p>Cette liste vous sera utile ultérieurement pour réinitialiser les éléments de démarrage de votre ordinateur. </p>
+                                
+                                
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Général</strong>, puis supprimez la coche de la case <strong>Charger les éléments de démarrage</strong>.
+								</p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Notez la liste des éléments qui sont sélectionnés. </p>
+								<p>Cette liste vous sera utile ultérieurement pour réinitialiser les éléments de démarrage de votre ordinateur. </p>
+								</li>
+								<li>
+								<p>Cliquez sur <strong>Désactiver tout</strong>. </p>
+								</li>
+							</ol>
+						</div>
+						</td></tr>
+						</table>
+						
+						</li>
+						<li>
+						<p>Cliquez sur <strong>Appliquer</strong>, puis sur <strong>OK</strong>. </p>
+						<p>Une nouvelle fenêtre s'affiche. Cliquez sur <strong>Redémarrer</strong> pour continuer. </p>
+						
+						 	<span class="note">
+							<p><strong>Remarque</strong><br>
+							Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+							
+							</span>
+						
+						</li>
+						<li>
+						<p>Une fois votre ordinateur redémarré, la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong> apparaît. Cochez la case en regard de l'option <strong>Ne plus afficher ce message</strong>, puis cliquez sur <strong>OK</strong>. </p>
+						</li>
+						<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+					</ol>
+					</div>
+			</div>
+			
+			<div class="step" id="Wired-2c-DisableFirewall">
+				<h4>Configurer ou désactiver temporairement le pare-feu ou le logiciel antivirus sur votre ordinateur</h4>
+				
+				<p>Si vous ne parvenez pas à imprimer, il vous faudra peut-être désactiver temporairement votre pare-feu. Votre pare-feu peut empêcher votre ordinateur de se connecter à l'imprimante. Pour déterminer si tel est le cas, procédez comme suit.</p>
+				
+				<div class="list">
+					<ol type="1">
+						<li><p>Vérifiez si des mises à jour du logiciel antivirus ou du pare-feu sont disponibles sur le site Web du fournisseur, et installez-les le cas échéant. De nombreux fournisseurs de logiciels de sécurité fournissent des mises à jour qui corrigent les problèmes connus et offrent les dernières défenses contre les menaces de sécurité. </p></li>
+						<li>
+						<p>Cliquez avec le bouton droit sur l'icône du pare-feu de la barre des tâches (située près de la date et de l'heure sur votre ordinateur), puis cliquez sur
+						<strong>Arrêter</strong> ou <strong>Désactiver</strong>. </p>
+						<p>Si aucune option d'arrêt n'est disponible, ouvrez le logiciel pare-feu et sélectionnez l'option permettant de l'arrêter ou de le désactiver. Il se peut que l'icône du pare-feu change d'aspect pour indiquer que le logiciel est désactivé. </p>
+						</li>
+						<li><button class="helperButton reboot">Cliquez ici pour redémarrer votre ordinateur.</button>
+						 
+						<span class="note">
+							<p><strong>Remarque</strong><br>
+							Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+                        </li>
+						<li>
+						<p>Cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+						
+					</ol>
+				</div>
+			</div>
+			<div class="step" id="Wired-2d-ReinstallHPSoftware">
+				<step-options showSurvey="true"/>
+				<h4>Réinstallation du logiciel HP</h4>
+				<p>Réinstallez le logiciel HP en exécutant le programme d'installation que vous avez téléchargé. </p>
+		
+				<div class="list">
+					<ol type="1">
+										
+						<li>
+						<p>Si vous utilisez une connexion&nbsp;USB, débranchez le câble USB de votre imprimante et de l'ordinateur (s'il est actuellement branché). </p>
+						</li>
+						<li>
+						<p>Mettez votre imprimante sous tension.</p>
+						</li>
+						<li> 
+						<p>Installez le logiciel HP en exécutant le programme d'installation que vous avez téléchargé. </p>
+						</li>
+						<li>
+						<p>Suivez les instructions à l'écran en vous assurant d'effectuer toutes les étapes de l'installation sans annuler ou quitter aucun écran.</p>
+						<span class="note">
+						<p><strong>Remarque</strong><br>
+						Certains modèles d'imprimante nécessitent une connexion USB au cours de l'installation. Si le logiciel vous y invite, branchez le câble USB. Ne branchez pas le câble USB avant d'y avoir été invité(e), ou une erreur d'installation risque de se produire. De même, si votre logiciel ne détecte toujours pas votre imprimante via la connexion&nbsp;USB, suivez les conseils USB ci-dessous.</p>
+						
+						</span>
+						
+						<span class="toggleHelp" title="Conseils USB">Conseils USB</span>
+    				    <span class="expandableHelp" title="Conseils USB">
+
+						<div class="list">
+							<ul>
+								<li>
+								<p>La longueur du câble USB ne doit pas dépasser 5&nbsp;mètres. (Pour des résultats optimaux, utilisez un câble USB d'une longueur maximale de 2&nbsp;mètres.)</p>
+								</li>
+								<li>
+								<p>Essayez de brancher le câble USB à un autre connecteur USB de votre ordinateur. (Par exemple, si vous avez branché le câble à un port USB avant, essayez de le brancher à un port arrière.)
+								</p>
+								</li>
+								<li>
+								<p>Si le câble USB est relié à un concentrateur USB ou à une station d'accueil d'ordinateur portable, il se peut que l'installation échoue. Même si vous pensez que votre concentrateur USB fonctionne correctement, essayez de brancher directement le câble USB à l'ordinateur pendant l'installation du périphérique (lorsque le système vous y invite). Vous pourrez toujours le rebrancher au concentrateur USB ultérieurement. </p>
+								</li>
+								<li>
+								<p>Si vous devez utiliser un concentrateur&nbsp;USB, utilisez-en un qui soit alimenté en externe au lieu de recourir à un concentrateur sans alimentation.</p>
+								</li>
+							</ul>
+						</div>
+						
+						</span>
+						</li>
+						<li>
+						<p>Lorsque l'installation est terminée, essayez d'utiliser votre imprimante.</p>
+						</li>
+						
+						<li>
+						<p>Que le logiciel ait été correctement installé ou non, <em>suivez les instructions de l'étape suivante pour activer les logiciels au démarrage</em>, sinon votre ordinateur risque de ne pas fonctionner conformément à vos attentes. <a class="gotoStep" href="Wired-2e-EnableStartupServices">Cliquez ici</a> ou cliquez sur <strong>Étape suivante</strong> ci-dessous pour poursuivre.
+						</p>
+						</li>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="step" id="Wired-2e-EnableStartupServices">
+				<h4>Activation des services de démarrage</h4>
+				<p>Si vous avez précédemment désactivé des services de démarrage, suivez ces étapes pour les réactiver, sinon votre ordinateur risque de ne pas fonctionner conformément à vos attentes.</p>
+				<div class="list">
+					<ol type="1">
+						<li>
+						<p><button class="helperButton runCommand" title="msconfig">Cliquez ici pour ouvrir la boîte de dialogue de l'<strong>Utilitaire de configuration système</strong>.</button></p>
+						<span class="toggleHelp" title="Exécuter msconfig">Bouton défectueux&nbsp;? Cliquez ici pour obtenir des instructions.</span>
+				        <span class="expandableHelp" title="Exécuter msconfig">
+						
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez ou appuyez dans le coin supérieur droit de l'écran pour ouvrir la barre Icônes, puis sur l'icône <b>Rechercher</b>.</p>
+								</li>
+                                <li>
+								<p>Saisissez <b>msconfig</b> dans la zone <b>Rechercher des applications</b>.</p>
+								</li>
+                                <li>
+								<p>Cliquez ou appuyez sur <b>msconfig</b>.</p>
+								</li>
+							</ol>
+						</div>
+						
+						
+						
+						</span>
+						</li>
+						<li>
+						<p>Si vous avez désactivé le <strong>Démarrage normal</strong>, suivez les étapes correspondantes à gauche. Si vous avez désactivé le
+						<strong>Démarrage sélectif</strong>, suivez les étapes correspondantes à droite. </p>
+						
+						<table>
+						<tr><th>
+						<p>Pour activer un démarrage normal</p>
+						</th>
+						<th>
+						<p>Pour activer un démarrage sélectif</p>
+						</th>
+						</tr>
+						<tr>
+						<td width="30%">
+						<div class="list">
+							<ul type="1">
+								<li>
+								<p>Sélectionnez <strong>Démarrage normal</strong>. </p>
+								</li>
+							</ul>
+						</div>
+						</td>
+						<td>
+						<div class="list">
+							<ol type="1">
+								<li>
+								<p>Cliquez sur l'onglet <strong>Démarrage</strong>, puis sur <b>Ouvrir le Gestionnaire des tâches</b>, et sélectionnez chaque élément de la liste dressée lors d'une étape précédente. </p>
+								</li>
+								<li>
+								<p>Cliquez sur l'onglet <strong>Services</strong>, puis cochez la case <strong>Masquer tous les services Microsoft</strong> 
+								au bas de l'écran. </p>
+								</li>
+								<li>
+								<p>Dans l'onglet <strong>Services</strong>, sélectionnez chaque élément de la liste dressée lors d'une étape précédente.</p>
+								</li>
+							</ol>
+						</div>
+						</td>
+						</tr>
+						</table>
+						</li>
+						<li>
+						<p>Cliquez sur <strong>Appliquer</strong>, puis sur <strong>OK</strong>. </p>
+						</li>
+						<li>
+						<p>Une nouvelle fenêtre vous invite à redémarrer.</p>
+						
+						<span class="note">
+						<p><strong>Remarque</strong><br>
+						Une fois le redémarrage effectué, ce programme de dépannage devrait s'ouvrir et revenir automatiquement sur cette page. S'il ne s'ouvre pas automatiquement, ouvrez-le manuellement après le redémarrage.</p>
+						
+						</span>
+						</li>
+						<li>
+						<p>Après le redémarrage, cliquez sur <b>Étape suivante</b> ci-dessous pour passer à l'étape suivante de la solution.</p>
+						</li>
+						
+					</ol>
+				</div>
+			</div>
+			<div class="step" id="Wired-2f-EnableFirewall">
+				<step-options showSurvey="true"/>
+				<h4>Activation de votre pare-feu</h4>
+				<p>Si vous avez désactivé votre logiciel pare-feu, suivez ces instructions pour le réactiver.</p>
+				
+				<div class="list">
+				<ol>
+					<li><p>Cliquez avec le bouton droit sur l'icône du pare-feu de la barre des tâches (située près de la date et de l'heure sur votre ordinateur), puis cliquez sur
+					<b>Démarrer </b>ou <b>Activer</b>.</p>
+					<p>Si aucune option de démarrage n'est disponible, ouvrez le logiciel pare-feu et sélectionnez l'option permettant de le démarrer ou de l'activer. Il se peut que l'icône du pare-feu change d'aspect pour indiquer que le logiciel est activé. </p></li>
+					<li><p>Si le logiciel pare-feu a été désactivé durant l'installation du logiciel de l'imprimante, il se peut qu'il bloque les programmes HP ou les ports nécessaires pour effectuer la numérisation. Si une fenêtre contextuelle vous invitant à donner votre permission pour accéder au réseau s'ouvre lorsque vous tentez d'effectuer une numérisation, cliquez sur <b>Oui</b> pour autoriser l'accès. </p>
+					
+						<p>Si vous pouviez imprimer quand le pare-feu était désactivé, mais que vous ne le pouviez plus une fois le pare-feu réactivé, vous devriez configurer le pare-feu pour qu'une connexion puisse être établie avec l'imprimante. Pour plus d'informations, consultez le <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span> en ligne via le lien ci-dessous.
+						</p>
+						<span class="note">
+							<p><strong>Remarque</strong><br>
+							Les instructions de configuration du pare-feu disponible sur le site Web du <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span> s'appliquent aux imprimantes câblées et sans fil.</p>
+							
+							</span>
+						<p>
+						<a href="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=bmGoWirelessFirewall" target="_blank" title="http://h20180.www2.hp.com/apps/Nav?h_pagetype=s-921&h_lang=fr&h_client=s-h-e005-01&h_keyword=bmGoWirelessFirewall">
+						Accéder au <span class="varTitle" id="vtWPC">Centre d'impression sans fil HP</span>.</a> </p>
+						
+						</li>
+				</ol>
+				</div>
+				
+				<p>Si vous avez réussi à installer votre imprimante HP, la procédure est terminée. Vous pouvez supprimer ce programme de dépannage si vous le souhaitez.</p>
+				<p>En cas d'échec de l'installation, <a href="#HPSupport">cliquez ici pour obtenir plus d'aide</a>.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

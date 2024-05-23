@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="" lang="zxx">
+<head>
+<meta name="author" content="">
+<meta name="description" content="">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS2E</title>
+
+<!-- Favicon Icon -->
+<link rel="shortcut icon" href="{{url_for('static',filename='assets/img/favicon.png')}}" />
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{url_for('static',filename='assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='assets/plugins/bootstrap/css/bootstrap-select.min.css')}}">
+<link href="{{url_for('static',filename='assets/plugins/icons/css/icons.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/plugins/animate/animate.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/plugins/bootstrap/css/bootsnav.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='assets/plugins/nice-select/css/nice-select.css')}}">
+<link href="{{url_for('static',filename='assets/plugins/aos-master/aos.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='assets/css/responsive.css')}}" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap')}}" rel="stylesheet"> 
+<link href="{{url_for('static',filename='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap')}}" rel="stylesheet"> 
+</head>
+<body class="utf_skin_area">
+<div class="page_preloader"></div>
+<!-- ======================= Start Navigation ===================== -->
+<nav class="navbar navbar-default navbar-mobile navbar-fixed white no-background bootsnav">
+  <div class="container"> 
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"> <i class="fa fa-bars"></i> </button>
+      <a class="navbar-brand" href="/index"> <img src="{{url_for('static',filename='assets/img/logo.png')}}" class="logo logo-display" alt=""> <img src="{{url_for('static',filename='assets/img/logo.png')}}" class="logo logo-scrolled" alt=""> </a> 
+	</div>
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li class="br-right">
+          <a class="btn-signup red-btn" href="/signin" onclick="openModal()" >
+              <i class="login-icon ti-user"></i>Se connecter
+          </a>
+      </li>
+      
+        <li class="sign-up"><a class="btn-signup red-btn" href="/signup"><span class="ti-briefcase"></span> S'inscrire</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ======================= End Navigation ===================== --> 
+
+<!-- ======================= Start Banner ===================== -->
+<div class="utf_main_banner_area" style="background-image:url({{url_for('static',filename='assets/img/slider_bg.jpg')}});" data-overlay="8">
+  <div class="container">
+    <div class="col-md-8 col-sm-10">
+      <div class="caption cl-white home_two_slid">
+        <h2>Quel est l’impact <span class="theme-cl">environnemental</span> de votre site ?</h2> 
+        </div>
+    </div>
+  </div>
+</div>
+<!-- ======================= End Banner ===================== --> 
+<section>
+  <div>
+    <h1>GreenIT</h1>
+  </div>
+</section>
+<section class="section section-lg section-inset-1 bg-gray-1 pt-lg-0">
+  <div class="container">
+    <div class="row row-50 justify-content-xl-between align-items-lg-center">
+      <div class="col-lg-6 wow fadeInLeft">
+        <div class="box-image"><img class="box-image-static" src="{{url_for('static',filename='assets/img/impact_environnemental_numérique.png')}}" alt="" width="483" height="327"/><!--img class="box-image-position" src="images/home-3-2-341x391.png" alt="" width="341" height="391"/-->
+        </div>
+      </div>
+      <div class="col-lg-6 col-xl-5 wow fadeInRight">
+        <h2>About Us</h2>
+        <p>Pesto is a family owned and operated Italian Restaurant offering a combination of fresh ingredients and authentic Italian cooking.</p>
+        <p>We will make sure you are served the most authentic and fresh Italian dishes, while offering the best customer service. Our kitchen is committed to providing our guests with the best Italian Cuisine.</p><img src="{{url_for('static',filename='images/signature-1-140x50.png')}}" alt="" width="140" height="50"/>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= footer start ========================= -->
+<footer class="footer">
+  <div class="container"> 
+    <div class="row">
+	  <div class="col-md-3 col-sm-4">
+        <a href="index.html"><img class="{{url_for('static',filename='assets/img/logo.png')}}" alt=""></a>
+                    
+      </div>	
+      <div class="col-md-9 col-sm-8">
+        <div class="row">
+          
+        </div>
+      </div>      
+    </div>
+    
+  </div>
+</footer>
+
+<!-- Signup Code -->
+<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="myModalLabel1">
+      <div class="modal-body">
+        
+        <!-- Tab panels -->
+        <div class="tab-content"> 
+          <!-- user Panel 1-->
+          <div class="tab-pane fade in show active" id="user" role="tabpanel">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Adresse Email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Mot de passe">
+              </div>
+              <div class="form-group"> <span class="custom-checkbox">
+                <input type="checkbox" id="4">
+                <label for="4"></label>
+                Se souvenir </span> <a href="#" title="Forget" class="fl-right">Mot de passe oublié?</a> 
+			  </div>
+              <div class="form-group text-center">
+                <button type="button" class="btn theme-btn full-width btn-m">Se connecter</button>
+              </div>
+            </form>
+			
+          <!--/.Panel 1--> 
+          
+          <!-- Candidate Panel 2-->
+          <div class="tab-pane fade" id="candidate" role="tabpanel">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email Address">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password">
+              </div>
+              <div class="form-group"> <span class="custom-checkbox">
+                <input type="checkbox" id="44">
+                <label for="44"></label>
+                Se souvenir </span> <a href="#" title="Forget" class="fl-right">Mot de passe oublié?</a> 
+			  </div>
+              <div class="form-group text-center">
+                <button type="button" class="btn theme-btn full-width btn-m">Se connecter</button>
+              </div>
+            </form>
+			          </div>
+        </div>
+        <!-- Tab panels --> 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Signup --> 
+<div><a href="#" class="scrollup">Scroll</a></div>
+
+<!-- Jquery js--> 
+<script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootsnav.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/viewportchecker.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/slick.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/wysihtml5-0.3.0.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/bootstrap/js/bootstrap-wysihtml5.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/aos-master/aos.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/plugins/nice-select/js/jquery.nice-select.min.js')}}"></script> 
+<script src="{{url_for('static',filename='assets/js/custom.js')}}"></script> 
+<script>
+	$(window).load(function() {
+	  $(".page_preloader").fadeOut("slow");;
+	});
+	AOS.init();
+</script>
+</body>
+</html>
